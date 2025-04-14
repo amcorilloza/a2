@@ -27,7 +27,7 @@ def parse_command_args():
     "Set up argparse here. Call this function inside main."
     parser = argparse.ArgumentParser(
         description="DU Improved -- See Disk Usage Report with bar charts",
-        epilog="Copyright 2022"
+        epilog="Copyright 202X"
     )
     parser.add_argument(
         "-l", "--length",
@@ -37,14 +37,7 @@ def parse_command_args():
     )
     # add argument for "human-readable". USE -H, don't use -h! -h is reserved for --help which is created automatically.
     parser.add_argument(
-        "-l", "--length",
-        type=int,
-        default=20,
-        help="Specify the length of the graph. Default is 20."
-    )
-    # check the docs for an argparse option to store this as a boolean.
-    parser.add_argument(
-        "-H",
+        "-H", "--human-readable",
         action="store_true",
         help="Print sizes in human-readable format."
     )
@@ -87,7 +80,7 @@ def create_dir_dict(alist):
     "gets a list from call_du_sub, returns a dictionary which should have full"
     "directory name as key, and the number of bytes in the directory as the value."
     dir_dict = {}
-    for line in lines:
+    for line in alist:
         parts = line.strip().split(maxsplit=1)
         if len(parts) == 2:
             size_str, path = parts
