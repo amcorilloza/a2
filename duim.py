@@ -55,7 +55,7 @@ def parse_command_args():
         help="Target directory to scan."
     )
     return parser.parse_args()
-#    args = parser.parse_args()
+    # args = parser.parse_args()
 
 def percent_to_graph(percent, total_chars):
     "returns a string: eg. '##  ' for 50 if total_chars == 4"
@@ -108,4 +108,4 @@ def calculate_percent(size, total):
     return round((size / total) * 100)
 
 if __name__ == "__main__":
-
+    args = parse_command_args()
