@@ -35,7 +35,13 @@ def parse_command_args():
 
 def percent_to_graph(percent, total_chars):
     "returns a string: eg. '##  ' for 50 if total_chars == 4"
-    pass
+    if not (0 <= percent <= 100):
+        raise ValueError("Percent must be between 0 and 100.")
+
+    filled_length = int((percent / 100) * total_chars)
+    empty_length = total_chars - filled_length
+
+    return '=' * filled_length + ' ' * empty_length
 
 def call_du_sub(location):
     "takes the target directory as an argument and returns a list of strings"
