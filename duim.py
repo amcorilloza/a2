@@ -20,7 +20,7 @@ violators will be reported and appropriate action will be taken.
 
 Description: <Enter your documentation here>
 
-Date: 
+Date: April 13, 2025
 '''
 
 def parse_command_args():
@@ -71,10 +71,17 @@ def create_dir_dict(alist):
                 size = int(size_str)
                 dir_dict[path] = size
             except ValueError:
-                # skip if size is not a valid integer
+                # skip if not a valid integer
                 continue
     return dir_dict
 
+def calculate_percent(size, total):
+    """
+    Calculates the percentage of total size.
+    """
+    if total == 0:
+        return 0
+    return round((size / total) * 100)
 
 if __name__ == "__main__":
-    pass
+
