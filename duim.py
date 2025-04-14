@@ -62,7 +62,18 @@ def call_du_sub(location):
 def create_dir_dict(alist):
     "gets a list from call_du_sub, returns a dictionary which should have full"
     "directory name as key, and the number of bytes in the directory as the value."
-    pass
+    dir_dict = {}
+    for line in lines:
+        parts = line.strip().split(maxsplit=1)
+        if len(parts) == 2:
+            size_str, path = parts
+            try:
+                size = int(size_str)
+                dir_dict[path] = size
+            except ValueError:
+                # skip if size is not a valid integer
+                continue
+    return dir_dict
 
 
 if __name__ == "__main__":
