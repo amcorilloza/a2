@@ -40,7 +40,18 @@ def percent_to_graph(percent, total_chars):
 def call_du_sub(location):
     "takes the target directory as an argument and returns a list of strings"
     "returned by the command `du -d 1 location`"
-    pass
+    process = subprocess.Popen(
+        ['du', '-d', '1', location],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True
+    )
+    stdout, stderr = process.communicate()
+
+    if process.returncode != 0:
+        raise Exception(f"du command failed: {stderr.strip()}")
+
+    return stdout.strip().split('\n')
 
 def create_dir_dict(alist):
     "gets a list from call_du_sub, returns a dictionary which should have full"
